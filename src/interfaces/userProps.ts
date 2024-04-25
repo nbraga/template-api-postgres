@@ -8,9 +8,3 @@ export interface UserProps {
     updatedAt: Date;
     lastLogin: Date;
 }
-
-export interface UserRegisterProps {
-    name: string;
-    email: string;
-    password: string;
-}

@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import { userRoutes } from "./user";
 import { loginRoutes } from "./login";
+import { adminRoutes } from "./admin";
 
 const router = Router();
 
@@ -10,5 +11,6 @@ router.get("/", (req: Request, res: Response) => {
 
 router.use("/user", userRoutes);
 router.use("/login", loginRoutes);
+router.use("/admin", adminRoutes);
 
 export { router };

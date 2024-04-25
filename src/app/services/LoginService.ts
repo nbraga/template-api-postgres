@@ -9,14 +9,15 @@ class LoginService {
         const user = await prismaClient.user.findFirst({
             where: { email },
         });
+
         if (!user) {
-            throw new ApiError("Usuário ou senha incorreta!", 400);
+            throw new ApiError("E-mail ou senha incorreta!", 400);
         }
 
         const isMatchPassword = await compare(password, user.password);
 
         if (!isMatchPassword) {
-            throw new ApiError("Usuário ou senha incorreta!", 400);
+            throw new ApiError("E-mail ou senha incorreta!", 400);
         }
 
         const token = sign(
@@ -27,6 +28,8 @@ class LoginService {
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
+
+        delete user.password;
 
         return {
             user,

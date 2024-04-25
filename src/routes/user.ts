@@ -5,7 +5,7 @@ import { isAuthenticated } from "../middlewares/isAuthenticated";
 const userRoutes = Router();
 
 userRoutes.get("/", isAuthenticated, UserController.index);
-userRoutes.get("/refresh-data", isAuthenticated, UserController.refreshData);
 userRoutes.post("/", isAuthenticated, UserController.create);
+userRoutes.delete("/:userId", isAuthenticated, UserController.remove);
 
 export { userRoutes };

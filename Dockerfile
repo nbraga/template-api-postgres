@@ -1,0 +1,23 @@
+FROM node:18
+
+WORKDIR /app
+
+ARG PORT=3333
+ENV PORT=$PORT
+
+ARG PREFIX_URL=/v1
+ENV PREFIX_URL=$PREFIX_URL
+
+ARG DATABASE_URL="postgresql://postgres:postgres@localhost:5432/manuapp?schema=public"
+ENV DATABASE_URL=$DATABASE_URL
+
+ARG JWT_SECRET=jwtsecret
+ENV JWT_SECRET=$JWT_SECRET
+
+COPY . .
+
+RUN yarn
+
+EXPOSE 3333
+
+ENTRYPOINT yarn dev
